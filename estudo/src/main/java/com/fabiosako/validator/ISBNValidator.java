@@ -14,8 +14,9 @@ public class ISBNValidator {
     
     private static final String ONLY_NUMBER_X = "[^0-9Xx]+";
     
-    public static boolean validateISBN10(String isbn) {
-        boolean resultado = false;
+    public static String validateISBN10(String isbn) {
+        
+        String isbnValidated = null;
         if(isbn != null){
             
             String onlyNumberAndX = isbn.replaceAll(ONLY_NUMBER_X, "");
@@ -29,22 +30,21 @@ public class ISBNValidator {
                     if(Character.isDigit(charInteger)){
                      checkSum += Character.getNumericValue(charInteger) * i;   
                     }else{
-                        resultado = false;
                         break;
                     }
                     
                 }
                 if((checkSum+digit)%11 == 0){
-                    resultado = true;
+                    isbnValidated = onlyNumberAndX;
                 }
              
             }
         } 
-        return resultado;
+        return isbnValidated;
     }
     
-    public static boolean validateISBN13(String isbn13) {
-        boolean resultado = false;
+    public static String validateISBN13(String isbn13) {
+        String resultado = null;
         if(isbn13 != null && (isbn13.startsWith("978") || isbn13.startsWith("979"))){
             String isbn13OnlyNumber = isbn13.replaceAll(BarCodeValidator.ONLY_NUMBER, "");
             if(isbn13OnlyNumber.length() == 13){

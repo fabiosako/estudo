@@ -16,11 +16,10 @@ import org.junit.Test;
 public class BarCodeValidatorTest {
     @Test
     public void validaEAN13(){
-        boolean valido = BarCodeValidator.validateBarCode("7891317003715");
-        Assert.assertTrue(valido);
-        
-        valido = BarCodeValidator.validateBarCode("726412175425");
-        Assert.assertTrue(valido);
-        
+        Assert.assertEquals("7891317003715", BarCodeValidator.validateBarCode("7891317003715"));
+    }
+    
+    public void validateUPC(){
+        Assert.assertEquals("0726412175425", BarCodeValidator.validateBarCode("726412175425"));
     }
 }

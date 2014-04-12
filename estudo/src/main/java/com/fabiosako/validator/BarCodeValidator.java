@@ -15,8 +15,8 @@ public class BarCodeValidator {
 
     public static final String ONLY_NUMBER = "[^0-9]+";
 
-    public static boolean validateBarCode(String barcode) {
-        boolean resultado = false;
+    public static String validateBarCode(String barcode) {
+        String barcodeValidated = null;
         if (barcode != null) {
             String bar = barcode.replaceAll(ONLY_NUMBER, "");
             int checkSum = 0;
@@ -29,12 +29,12 @@ public class BarCodeValidator {
                     checkSum += i % 2 == 0 ? digit : digit * 3;
                 }
                 if (checkSum % 10 == 0) {
-                    resultado = true;
+                    barcodeValidated = bar;
                 }
             }
         }
 
-        return resultado;
+        return barcodeValidated;
     }
 
 }
